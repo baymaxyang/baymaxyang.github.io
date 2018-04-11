@@ -110,7 +110,7 @@
 <meta property="og:description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity:应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Acti">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="file:///C:/AndroidSDK/docs/images/components/intent-filters@2x.png">
-<meta property="og:updated_time" content="2017-08-23T08:08:36.230Z">
+<meta property="og:updated_time" content="2018-04-10T16:26:43.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Developers之Intent">
 <meta name="twitter:description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity:应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Acti">
@@ -398,9 +398,9 @@
 <p>Extras</p>
 <p>完成action所需要的数据值，可以调用putExtras()方法传参，该方法有两个参数，键值创建一个Bundle对象，向Bundle传入需要的值，最后将Bundle对象通过putExras()传给intent。</p>
 <p>Flags<br>用来记录intent的数据属性信息，可以知道系统如何去开启一个活动并且在启动后怎样处理（例如，判断其是否在最近任务列表中），使用setFlags()设置。</p>
-<h3 id="Example-explicit-intent"><a href="#Example-explicit-intent" class="headerlink" title="Example explicit intent"></a>Example explicit intent</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// Executed in an Activity, so &apos;this&apos; is the Context</div><div class="line">// The fileUrl is a string URL, such as &quot;http://www.example.com/image.png&quot;</div><div class="line">Intent downloadIntent = new Intent(this, DownloadService.class);</div><div class="line">downloadIntent.setData(Uri.parse(fileUrl));</div><div class="line">startService(downloadIntent);</div></pre></td></tr></table></figure>
-<h3 id="Example-implicit-intent"><a href="#Example-implicit-intent" class="headerlink" title="Example implicit intent"></a>Example implicit intent</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// Create the text message with a string</div><div class="line">Intent sendIntent = new Intent();</div><div class="line">sendIntent.setAction(Intent.ACTION_SEND);</div><div class="line">sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);</div><div class="line">sendIntent.setType(&quot;text/plain&quot;);</div><div class="line"></div><div class="line">// Verify that the intent will resolve to an activity</div><div class="line">if (sendIntent.resolveActivity(getPackageManager()) != null) &#123;</div><div class="line">   startActivity(sendIntent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Forcing-an-app-chooser"><a href="#Forcing-an-app-chooser" class="headerlink" title="Forcing an app chooser"></a>Forcing an app chooser</h2><p>当有不止一个组件匹配你的intent时，用户可以选择要打开的组件也可以对action进行默认选择的设置。这是应该向用户展示一个对话框，询问用户要选择哪一个组件进行开启。用createChooser()创建一个intent来展示选择对话框，并且将这个intent传给startActivity()：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Intent sendIntent = new Intent(Intent.ACTION_SEND);</div><div class="line">...</div><div class="line"></div><div class="line">// Always use string resources for UI text.</div><div class="line">// This says something like &quot;Share this photo with&quot;</div><div class="line">String title = getResources().getString(R.string.chooser_title);</div><div class="line">// Create intent to show the chooser dialog</div><div class="line">Intent chooser = Intent.createChooser(sendIntent, title);</div><div class="line"></div><div class="line">// Verify the original intent will resolve to at least one activity</div><div class="line">if (sendIntent.resolveActivity(getPackageManager()) != null) &#123;</div><div class="line">	startActivity(chooser);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Example-explicit-intent"><a href="#Example-explicit-intent" class="headerlink" title="Example explicit intent"></a>Example explicit intent</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Executed in an Activity, so 'this' is the Context</span></div><div class="line"><span class="comment">// The fileUrl is a string URL, such as "http://www.example.com/image.png"</span></div><div class="line">Intent downloadIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, DownloadService.<span class="keyword">class</span>);</div><div class="line">downloadIntent.setData(<span class="built_in">Uri</span>.parse(fileUrl));</div><div class="line">startService(downloadIntent);</div></pre></td></tr></table></figure>
+<h3 id="Example-implicit-intent"><a href="#Example-implicit-intent" class="headerlink" title="Example implicit intent"></a>Example implicit intent</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Create the text message with a string</span></div><div class="line">Intent sendIntent = <span class="keyword">new</span> Intent();</div><div class="line">sendIntent.setAction(Intent.ACTION_SEND);</div><div class="line">sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);</div><div class="line">sendIntent.setType(<span class="string">"text/plain"</span>);</div><div class="line"></div><div class="line"><span class="comment">// Verify that the intent will resolve to an activity</span></div><div class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</div><div class="line">   startActivity(sendIntent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Forcing-an-app-chooser"><a href="#Forcing-an-app-chooser" class="headerlink" title="Forcing an app chooser"></a>Forcing an app chooser</h2><p>当有不止一个组件匹配你的intent时，用户可以选择要打开的组件也可以对action进行默认选择的设置。这是应该向用户展示一个对话框，询问用户要选择哪一个组件进行开启。用createChooser()创建一个intent来展示选择对话框，并且将这个intent传给startActivity()：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Intent sendIntent = <span class="keyword">new</span> Intent(Intent.ACTION_SEND);</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// Always use string resources for UI text.</span></div><div class="line"><span class="comment">// This says something like "Share this photo with"</span></div><div class="line"><span class="keyword">String</span> <span class="built_in">title</span> = getResources().getString(R.<span class="keyword">string</span>.chooser_title);</div><div class="line"><span class="comment">// Create intent to show the chooser dialog</span></div><div class="line">Intent chooser = Intent.createChooser(sendIntent, <span class="built_in">title</span>);</div><div class="line"></div><div class="line"><span class="comment">// Verify the original intent will resolve to at least one activity</span></div><div class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="built_in">null</span>) &#123;</div><div class="line">	startActivity(chooser);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="接收一个隐式intent（intent-filter）"><a href="#接收一个隐式intent（intent-filter）" class="headerlink" title="接收一个隐式intent（intent filter）"></a>接收一个隐式intent（intent filter）</h2><p>为了声明你的应用可以接收处理的隐式intent，必须要在应用配置文件中的每一个组件加入一个或者多个<intent filter="">，每个intent filter指定intent的action、data和category，只有你的组件的某一个intent filter符合系统消息隐式intent时<br>系统才会发送intent。一个应用组件应该为每一个不同的功能单独分离intent filter。例如照片APP应该有image filter和edit filter。每个intent filter由<intent filter="">元素定义，放置在<activity>元素中，在<intent filter="">中，你可以通过指定一下三个元素来说明可以接收的intent：</intent></activity></intent></intent></p>
 <h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>   说明可以响应执行的action</p>
 <h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>说明处理的数据类型及MIME type</p>
@@ -506,17 +506,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -531,7 +522,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -578,22 +569,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Start-an-activity"><span class="nav-number">1.</span> <span class="nav-text">Start an activity:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Start-a-service"><span class="nav-number">2.</span> <span class="nav-text">Start a service:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deliver-a-broadcast："><span class="nav-number">3.</span> <span class="nav-text">Deliver a broadcast：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent的类型"><span class="nav-number"></span> <span class="nav-text">Intent的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显式intent"><span class="nav-number">1.</span> <span class="nav-text">显式intent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式intent"><span class="nav-number">2.</span> <span class="nav-text">隐式intent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Building-an-Intent"><span class="nav-number"></span> <span class="nav-text">Building an Intent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-explicit-intent"><span class="nav-number">1.</span> <span class="nav-text">Example explicit intent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-implicit-intent"><span class="nav-number">2.</span> <span class="nav-text">Example implicit intent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Forcing-an-app-chooser"><span class="nav-number"></span> <span class="nav-text">Forcing an app chooser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接收一个隐式intent（intent-filter）"><span class="nav-number"></span> <span class="nav-text">接收一个隐式intent（intent filter）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#action"><span class="nav-number">1.</span> <span class="nav-text">action</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data"><span class="nav-number">2.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#category"><span class="nav-number">3.</span> <span class="nav-text">category</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
