@@ -101,17 +101,17 @@
 
 
 
-<meta name="description" content="MNIST-1-数据集介绍MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set)">
+<meta name="description" content="MNIST-1-数据集介绍 MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MNIST-1">
 <meta property="og:url" content="http://baymaxyang.github.io/2018/05/22/MNIST-1/index.html">
 <meta property="og:site_name" content="Baymaxyang">
-<meta property="og:description" content="MNIST-1-数据集介绍MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set)">
+<meta property="og:description" content="MNIST-1-数据集介绍 MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T12:02:34.653Z">
+<meta property="og:updated_time" content="2018-05-22T14:00:21.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MNIST-1">
-<meta name="twitter:description" content="MNIST-1-数据集介绍MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set)">
+<meta name="twitter:description" content="MNIST-1-数据集介绍 MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set)">
 
 
 
@@ -350,7 +350,8 @@
       
 
       
-        <h1 id="MNIST-1-数据集介绍"><a href="#MNIST-1-数据集介绍" class="headerlink" title="MNIST-1-数据集介绍"></a>MNIST-1-数据集介绍</h1><p>MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set) 也是同样比例的手写数字数据.</p>
+        <h1>MNIST-1-数据集介绍</h1>
+<p>MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set) 也是同样比例的手写数字数据.</p>
 <p>包含了四个文件：</p>
 <ul>
 <li>Training set images: train-images-idx3-ubyte.gz (9.9 MB, 解压后 47 MB, 包含 60,000 个样本)</li>
@@ -358,18 +359,21 @@
 <li>Test set images: t10k-images-idx3-ubyte.gz (1.6 MB, 解压后 7.8 MB, 包含 10,000 个样本)</li>
 <li>Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 个标签)</li>
 </ul>
-<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><p>Training 集合中有 60000 张图片, 每一图片分辨都是 28*28 , 处理后的每一张图片是一个长度为 784 的一维数组.</p>
+<h2>数据格式</h2>
+<p>Training 集合中有 60000 张图片, 每一图片分辨都是 28*28 , 处理后的每一张图片是一个长度为 784 的一维数组.</p>
 <p>labels 为对应图片的答案.</p>
 <p>Test 为测试数据集, 虽然文件中并没有验证数据集, 通常会将training 分一部分为 Validating data.</p>
 <p>图片像素取范围为 [0, 1], 0 为白色背景, 1 为黑色前景.</p>
-<h2 id="数据下载"><a href="#数据下载" class="headerlink" title="数据下载"></a>数据下载</h2><ul>
+<h2>数据下载</h2>
+<ul>
 <li>MNIST 数据集可在  <a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="external">http://yann.lecun.com/exdb/mnist/</a> 中直接下载.</li>
 </ul>
 <ul>
-<li><p>TensorFlow 提供了一个类处理 MNIST 数据， 可以自动下载并转化 MNIST 数据的格式.</p>
-<p>​    #载入MNIST数据, 如果指定目录下没有数据, TensorFlow会自动从上述网址下载数据到指定文件夹.</p>
+<li>
+<p>TensorFlow 提供了一个类处理 MNIST 数据， 可以自动下载并转化 MNIST 数据的格式.</p>
+<p>​	#载入MNIST数据, 如果指定目录下没有数据, TensorFlow会自动从上述网址下载数据到指定文件夹.</p>
 <p>​              from tensorflow.examples.tutorials.mnist import input_data</p>
-<p>​              mnist = input_data.read_data_sets(“dir”, one_hot=True)</p>
+<p>​              mnist = input_data.read_data_sets(&quot;dir&quot;, one_hot=True)</p>
 </li>
 </ul>
 
@@ -405,6 +409,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/23/SVM-1/" rel="prev" title="SVM-1">
+                SVM-1 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -472,7 +480,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -697,6 +705,8 @@
   
 
   
+  
+
 
   
 

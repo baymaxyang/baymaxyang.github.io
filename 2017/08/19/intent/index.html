@@ -101,20 +101,18 @@
 
 
 
-<meta name="description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity:应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Acti">
+<meta name="description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity: 应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Act">
 <meta name="keywords" content="android,intent,developeres">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Developers之Intent">
 <meta property="og:url" content="http://baymaxyang.github.io/2017/08/19/intent/index.html">
 <meta property="og:site_name" content="Baymaxyang">
-<meta property="og:description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity:应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Acti">
+<meta property="og:description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity: 应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Act">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="file:///C:/AndroidSDK/docs/images/components/intent-filters@2x.png">
 <meta property="og:updated_time" content="2018-04-10T16:26:43.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Developers之Intent">
-<meta name="twitter:description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity:应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Acti">
-<meta name="twitter:image" content="file:///C:/AndroidSDK/docs/images/components/intent-filters@2x.png">
+<meta name="twitter:description" content="Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法： Start an activity: 应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Act">
 
 
 
@@ -376,35 +374,67 @@
 
       
         <p>Intent是一个你可以请求来自其他应用组件活动的消息对象。通常有以下三种基本的用法：</p>
-<h3 id="Start-an-activity"><a href="#Start-an-activity" class="headerlink" title="Start an activity:"></a>Start an activity:</h3><p>应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Activity中调用原activity中的Onresult()方法。</p>
-<h3 id="Start-a-service"><a href="#Start-a-service" class="headerlink" title="Start a service:"></a>Start a service:</h3><p>service是在后台运行并且提供给用户一个操作接口的组件，可以通过向startService()传递一个intent来执行一次操作（比如下载文件），如果service是客户—服务器模式可以通过向bindService()传一个intent去绑定服务。</p>
-<h3 id="Deliver-a-broadcast："><a href="#Deliver-a-broadcast：" class="headerlink" title="Deliver a broadcast："></a>Deliver a broadcast：</h3><p>广播是所有应用可以接受到的一个消息。系统运行时会发出各种广播，比如系统启动时或者充电的时候。可以通过给sendBroadcast()传递一个intent来向其他应用发送广播。</p>
-<h2 id="Intent的类型"><a href="#Intent的类型" class="headerlink" title="Intent的类型"></a>Intent的类型</h2><p>intent分为显式intent和隐式intent</p>
-<h3 id="显式intent"><a href="#显式intent" class="headerlink" title="显式intent"></a>显式intent</h3><p>通过指定类名来开启组件，通常使用显式intent开启自己应用的组件因为你知道你想启动的活动或者服务的类的名字。</p>
-<h3 id="隐式intent"><a href="#隐式intent" class="headerlink" title="隐式intent"></a>隐式intent</h3><p>不明确指明一个类，而是声明一个需要执行的action，允许其他应用接收并进行处理。例如说，你想要向用户展示地图上的一个位置，可以通过一个隐式intent去请求开启一个能够显示地图位置的应用。</p>
-<p>当你创建一个显式intent来开启一个activity或者service的时候，系统会立即启动intent指明的应用组件。<br>当intent是一个隐式intent的时候，Android系统会对比设备上其他APP组件配置文件中的intent filter，如果intent和一个intent filter相匹配则打开该组件冰箱其传递intent，如果有多个应用都满足此intent，系统就会显示一个对话框让用户选择<br>要打开的应用。<br><img src="file:///C:/AndroidSDK/docs/images/components/intent-filters@2x.png" alt=""><br>intent filter是在应用配置文件中指明自己想要接收的intent的类型；如果不声明任何的intent filter，应用则只能由显式intent打开。</p>
+<h3>Start an activity:</h3>
+<p>应用中一个activity独占一个屏幕。可以通过给startActivity()方法传递一个携带必要数据的intent对象来start新的Activity。也可以调用startActivityForResult()在目标Activity结束时获取结果，并将结果返回到原Activity中调用原activity中的Onresult()方法。</p>
+<h3>Start a service:</h3>
+<p>service是在后台运行并且提供给用户一个操作接口的组件，可以通过向startService()传递一个intent来执行一次操作（比如下载文件），如果service是客户—服务器模式可以通过向bindService()传一个intent去绑定服务。</p>
+<h3>Deliver a broadcast：</h3>
+<p>广播是所有应用可以接受到的一个消息。系统运行时会发出各种广播，比如系统启动时或者充电的时候。可以通过给sendBroadcast()传递一个intent来向其他应用发送广播。</p>
+<h2>Intent的类型</h2>
+<p>intent分为显式intent和隐式intent</p>
+<h3>显式intent</h3>
+<p>通过指定类名来开启组件，通常使用显式intent开启自己应用的组件因为你知道你想启动的活动或者服务的类的名字。</p>
+<h3>隐式intent</h3>
+<p>不明确指明一个类，而是声明一个需要执行的action，允许其他应用接收并进行处理。例如说，你想要向用户展示地图上的一个位置，可以通过一个隐式intent去请求开启一个能够显示地图位置的应用。</p>
+<p>当你创建一个显式intent来开启一个activity或者service的时候，系统会立即启动intent指明的应用组件。
+当intent是一个隐式intent的时候，Android系统会对比设备上其他APP组件配置文件中的intent filter，如果intent和一个intent filter相匹配则打开该组件冰箱其传递intent，如果有多个应用都满足此intent，系统就会显示一个对话框让用户选择
+要打开的应用。
+![](file:///C:/AndroidSDK/docs/images/components/intent-filters@2x.png)
+intent filter是在应用配置文件中指明自己想要接收的intent的类型；如果不声明任何的intent filter，应用则只能由显式intent打开。</p>
 <blockquote>
 <p>注意：service通常由显式intent打开，隐式intent可能会有安全风险因为你不知系统打开的事什么服务，从Android5.0开始，使用隐式intent开启服务系统就会抛出一个异常。</p>
 </blockquote>
-<h2 id="Building-an-Intent"><a href="#Building-an-Intent" class="headerlink" title="Building an Intent"></a>Building an Intent</h2><p>intent对象需要携带一些信息去指明将要开启什么组件，比如说组件名称、目录等，另外还刻意附加一些信息来使组件更好的执行action。</p>
-<p>下面是一些基本的信息：<br>组件名称<br>这个信息是可选的，但对于显式intent来说是最关键的信息，标志这你想要打开的应用；如果没有名称这个信息，那么这就是一个隐式intent，通过携带其他的一些信息作为标记，要想打开一个具体的组件，则必须要指定它的名字。</p>
+<h2>Building an Intent</h2>
+<p>intent对象需要携带一些信息去指明将要开启什么组件，比如说组件名称、目录等，另外还刻意附加一些信息来使组件更好的执行action。</p>
+<p>下面是一些基本的信息：
+组件名称
+这个信息是可选的，但对于显式intent来说是最关键的信息，标志这你想要打开的应用；如果没有名称这个信息，那么这就是一个隐式intent，通过携带其他的一些信息作为标记，要想打开一个具体的组件，则必须要指定它的名字。</p>
 <p>组件名称必须包括其所在的包名，比如 com.example.ExampleActivity。可以使用setComponent(),setclass(),setClassName()指定componentname，也可以给intent构造函数参数赋值。</p>
-<p>Action<br>指明希望要执行的行为的一个字符串。</p>
+<p>Action
+指明希望要执行的行为的一个字符串。</p>
 <p>给action赋值可以用setAction()或者用intent构造函数。</p>
-<p>定义自己的action需要加一个包名作为前缀：<br>static final String ACTION_TIMETRAVEL = “com.example.action.TIMETRAVEL”;</p>
-<p>Data<br>指明要通过intent传递的数据对象或者数据类型，数据对象使用一个URI对象来传递，指定数据类型通过指明MIME type，用来寻找和此intent匹配的组件，设置URL调用setDdata()方法，设置MIME type调用setType()方法，如果两个都需要指定，则需要调用setDataAndType()方法；setData和setType两个方法互斥，不能同时调用。</p>
-<p>Category<br>好比目录，将intent分类，或者指明他可以实现怎样的行为，则必须要设置它的category属性。例如：<br>CATEGORY_BROWSABLE<br>    表示目标activity允许通过浏览器连接来启动或者展示其组件内容；<br>CATEGORY_LAUNCHER<br>    应用启动时的初始界面。</p>
-<p>以上的一些信息，比如组件名称、action、data和category，是用来系统确定将要启动的组件；<br>intent还能携带一些不会其他的信息，这些信息不会影响系统确认目标组件。</p>
+<p>定义自己的action需要加一个包名作为前缀：
+static final String ACTION_TIMETRAVEL = &quot;com.example.action.TIMETRAVEL&quot;;</p>
+<p>Data
+指明要通过intent传递的数据对象或者数据类型，数据对象使用一个URI对象来传递，指定数据类型通过指明MIME type，用来寻找和此intent匹配的组件，设置URL调用setDdata()方法，设置MIME type调用setType()方法，如果两个都需要指定，则需要调用setDataAndType()方法；setData和setType两个方法互斥，不能同时调用。</p>
+<p>Category
+好比目录，将intent分类，或者指明他可以实现怎样的行为，则必须要设置它的category属性。例如：
+CATEGORY_BROWSABLE
+	表示目标activity允许通过浏览器连接来启动或者展示其组件内容；
+CATEGORY_LAUNCHER
+	应用启动时的初始界面。</p>
+<p>以上的一些信息，比如组件名称、action、data和category，是用来系统确定将要启动的组件；
+intent还能携带一些不会其他的信息，这些信息不会影响系统确认目标组件。</p>
 <p>Extras</p>
 <p>完成action所需要的数据值，可以调用putExtras()方法传参，该方法有两个参数，键值创建一个Bundle对象，向Bundle传入需要的值，最后将Bundle对象通过putExras()传给intent。</p>
-<p>Flags<br>用来记录intent的数据属性信息，可以知道系统如何去开启一个活动并且在启动后怎样处理（例如，判断其是否在最近任务列表中），使用setFlags()设置。</p>
-<h3 id="Example-explicit-intent"><a href="#Example-explicit-intent" class="headerlink" title="Example explicit intent"></a>Example explicit intent</h3><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Executed in an Activity, so 'this' is the Context</span></div><div class="line"><span class="comment">// The fileUrl is a string URL, such as "http://www.example.com/image.png"</span></div><div class="line">Intent downloadIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, DownloadService.<span class="keyword">class</span>);</div><div class="line">downloadIntent.setData(<span class="built_in">Uri</span>.parse(fileUrl));</div><div class="line">startService(downloadIntent);</div></pre></td></tr></table></figure>
-<h3 id="Example-implicit-intent"><a href="#Example-implicit-intent" class="headerlink" title="Example implicit intent"></a>Example implicit intent</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Create the text message with a string</span></div><div class="line">Intent sendIntent = <span class="keyword">new</span> Intent();</div><div class="line">sendIntent.setAction(Intent.ACTION_SEND);</div><div class="line">sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);</div><div class="line">sendIntent.setType(<span class="string">"text/plain"</span>);</div><div class="line"></div><div class="line"><span class="comment">// Verify that the intent will resolve to an activity</span></div><div class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</div><div class="line">   startActivity(sendIntent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Forcing-an-app-chooser"><a href="#Forcing-an-app-chooser" class="headerlink" title="Forcing an app chooser"></a>Forcing an app chooser</h2><p>当有不止一个组件匹配你的intent时，用户可以选择要打开的组件也可以对action进行默认选择的设置。这是应该向用户展示一个对话框，询问用户要选择哪一个组件进行开启。用createChooser()创建一个intent来展示选择对话框，并且将这个intent传给startActivity()：<br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Intent sendIntent = <span class="keyword">new</span> Intent(Intent.ACTION_SEND);</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// Always use string resources for UI text.</span></div><div class="line"><span class="comment">// This says something like "Share this photo with"</span></div><div class="line"><span class="keyword">String</span> <span class="built_in">title</span> = getResources().getString(R.<span class="keyword">string</span>.chooser_title);</div><div class="line"><span class="comment">// Create intent to show the chooser dialog</span></div><div class="line">Intent chooser = Intent.createChooser(sendIntent, <span class="built_in">title</span>);</div><div class="line"></div><div class="line"><span class="comment">// Verify the original intent will resolve to at least one activity</span></div><div class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="built_in">null</span>) &#123;</div><div class="line">	startActivity(chooser);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="接收一个隐式intent（intent-filter）"><a href="#接收一个隐式intent（intent-filter）" class="headerlink" title="接收一个隐式intent（intent filter）"></a>接收一个隐式intent（intent filter）</h2><p>为了声明你的应用可以接收处理的隐式intent，必须要在应用配置文件中的每一个组件加入一个或者多个<intent filter="">，每个intent filter指定intent的action、data和category，只有你的组件的某一个intent filter符合系统消息隐式intent时<br>系统才会发送intent。一个应用组件应该为每一个不同的功能单独分离intent filter。例如照片APP应该有image filter和edit filter。每个intent filter由<intent filter="">元素定义，放置在<activity>元素中，在<intent filter="">中，你可以通过指定一下三个元素来说明可以接收的intent：</intent></activity></intent></intent></p>
-<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><p>   说明可以响应执行的action</p>
-<h3 id="data"><a href="#data" class="headerlink" title="data"></a>data</h3><p>说明处理的数据类型及MIME type</p>
-<h3 id="category"><a href="#category" class="headerlink" title="category"></a>category</h3><p>在name属性中声明intent类别，值必须是字符串类型。</p>
+<p>Flags
+用来记录intent的数据属性信息，可以知道系统如何去开启一个活动并且在启动后怎样处理（例如，判断其是否在最近任务列表中），使用setFlags()设置。</p>
+<h3>Example explicit intent</h3>
+<p><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Executed in an Activity, so 'this' is the Context</span></div><div class="line"><span class="comment">// The fileUrl is a string URL, such as "http://www.example.com/image.png"</span></div><div class="line">Intent downloadIntent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, DownloadService.<span class="keyword">class</span>);</div><div class="line">downloadIntent.setData(<span class="built_in">Uri</span>.parse(fileUrl));</div><div class="line">startService(downloadIntent);</div></pre></td></tr></table></figure></p>
+<h3>Example implicit intent</h3>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Create the text message with a string</span></div><div class="line">Intent sendIntent = <span class="keyword">new</span> Intent();</div><div class="line">sendIntent.setAction(Intent.ACTION_SEND);</div><div class="line">sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);</div><div class="line">sendIntent.setType(<span class="string">"text/plain"</span>);</div><div class="line"></div><div class="line"><span class="comment">// Verify that the intent will resolve to an activity</span></div><div class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</div><div class="line">   startActivity(sendIntent);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2>Forcing an app chooser</h2>
+<p>当有不止一个组件匹配你的intent时，用户可以选择要打开的组件也可以对action进行默认选择的设置。这是应该向用户展示一个对话框，询问用户要选择哪一个组件进行开启。用createChooser()创建一个intent来展示选择对话框，并且将这个intent传给startActivity()：
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Intent sendIntent = <span class="keyword">new</span> Intent(Intent.ACTION_SEND);</div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// Always use string resources for UI text.</span></div><div class="line"><span class="comment">// This says something like "Share this photo with"</span></div><div class="line"><span class="keyword">String</span> <span class="built_in">title</span> = getResources().getString(R.<span class="keyword">string</span>.chooser_title);</div><div class="line"><span class="comment">// Create intent to show the chooser dialog</span></div><div class="line">Intent chooser = Intent.createChooser(sendIntent, <span class="built_in">title</span>);</div><div class="line"></div><div class="line"><span class="comment">// Verify the original intent will resolve to at least one activity</span></div><div class="line"><span class="keyword">if</span> (sendIntent.resolveActivity(getPackageManager()) != <span class="built_in">null</span>) &#123;</div><div class="line">	startActivity(chooser);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2>接收一个隐式intent（intent filter）</h2>
+<p>为了声明你的应用可以接收处理的隐式intent，必须要在应用配置文件中的每一个组件加入一个或者多个&lt;intent filter&gt;，每个intent filter指定intent的action、data和category，只有你的组件的某一个intent filter符合系统消息隐式intent时
+系统才会发送intent。一个应用组件应该为每一个不同的功能单独分离intent filter。例如照片APP应该有image filter和edit filter。每个intent filter由&lt;intent filter&gt;元素定义，放置在&lt;activity&gt;元素中，在&lt;intent filter&gt;中，你可以通过指定一下三个元素来说明可以接收的intent：</p>
+<h3>action</h3>
+<p>说明可以响应执行的action</p>
+<h3>data</h3>
+<p>说明处理的数据类型及MIME type</p>
+<h3>category</h3>
+<p>在name属性中声明intent类别，值必须是字符串类型。</p>
 <blockquote>
 <p>注意：为了得到隐式intent，intent filter里必须要包含CATEGORY_DEFAULT categorystartActivity()和startActivityForResult()把所有的intent都当做默认intent类。如果不声明这个类，你的activity将不能响应任何隐式intent。</p>
 </blockquote>
@@ -522,7 +552,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -747,6 +777,8 @@
   
 
   
+  
+
 
   
 
